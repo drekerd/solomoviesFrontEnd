@@ -23,9 +23,9 @@
       <tbody>
       <#list moviesFromBackend as item>
         <tr>
-          <th scope="row">${item.listOnTableID}</th>
+          <th scope="row">${item.listOnTableID?string.computer}</th>
           <td><img src="${item.thumbnailFullLink}" class="poster"></td>
-          <td><a href="http://localhost:8081/details${item.id}" target="_blank">${item.name}</a></td>
+          <td><a href="http://localhost:8081/details/${item.id?string.computer}" target="_blank">${item.name}</a></td>
           <td>${item.description}</td>
         </tr>
       </#list>

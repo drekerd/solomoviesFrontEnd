@@ -10,27 +10,36 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.Serializable;
 
 
 @Data
-@Controller
+@Service
 public class MovieServiceFE implements Serializable {
 
     @Autowired
     private MovieByIdFE movie;
     String backendResponse;
 
-    String movieID;
+    //String movieID;
 
-    @PostConstruct
-    public void fetchMovies() {
+    //@PostConstruct
+   /* public void fetchMovies(long movieID) {
 
         final String uri = "http://localhost:8080/details/movie?id=" + movieID;
         this.backendResponse = callRumosApi(uri);
         this.movie = buildResponse(backendResponse);
+    }*/
+
+    public MovieByIdFE fetchMovies(long movieID) {
+
+        final String uri = "http://localhost:8080/details/movie?id=" + movieID;
+        this.backendResponse = callRumosApi(uri);
+        return buildResponse(backendResponse);
     }
 
     private String callRumosApi(final String uri) {
