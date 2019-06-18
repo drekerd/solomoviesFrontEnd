@@ -11,26 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <table class="table table-striped">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Poster</th>
-          <th scope="col">Name</th>
-          <th scope="col">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-      <#list moviesFromBackend as item>
-        <tr>
-          <th scope="row">${item.listOnTableID}</th>
-          <td><img src="${item.thumbnailFullLink}" class="poster"></td>
-          <td><a href="http://localhost:8081/details${item.id}" target="_blank">${item.name}</a></td>
-          <td>${item.description}</td>
-        </tr>
-      </#list>
-      </tbody>
-    </table>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
