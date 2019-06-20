@@ -29,7 +29,7 @@
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Top Rated By Year</a></li>
+        <li><a href="http://localhost:8081/solomovies" id="topRated">Top Rated By Year</a></li>
         <li><a href="#">Add New Movie</a></li>
         <li><a href="#">Search movie</a></li>
         <li class ="form-column">
@@ -56,7 +56,7 @@
         </tr>
       </thead>
       <tbody>
-      <#list moviesFromBackend as item>
+      <#list trending as item>
         <tr>
           <th scope="row">${item.listOnTableID?string.computer}</th>
           <td><img src="${item.thumbnailFullLink}" class="poster"></td>
