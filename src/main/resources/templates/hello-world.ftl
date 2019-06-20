@@ -11,6 +11,14 @@
     <title>Hello, world!</title>
   </head>
   <body>
+  <form action="/solomovies method="post">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Year</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
     <table class="table table-striped">
       <thead class="thead-light">
         <tr>

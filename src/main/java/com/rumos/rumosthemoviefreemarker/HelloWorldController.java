@@ -9,12 +9,11 @@ import com.rumos.rumosthemoviefreemarker.findMovieById.MovieServiceFE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -24,13 +23,35 @@ public class HelloWorldController {
     @Autowired
     private MovieService service;
     @Autowired
+    private List<BestFilm> bestFilm;
+    @Autowired
     private MovieServiceFE movieServiceDetails;
     @Autowired
     private MovieByIdFE movieByIdFE;
 
+
+    @RequestMapping("/test")
+    public String testHello(){
+        return "helloTest";
+    }
+
+    @RequestMapping("/time")
+    @ResponseBody
+    public String getHello(){
+        Date date = new Date();
+        return "hello "+ date;
+    }
+
     @GetMapping("/solomovies")
     public String helloWorld(Model model) {
         model.addAttribute("key", "rumos");
+        model.addAttribute("moviesFromBackend", service.getMovies());
+        return "hello-world";
+    }
+
+    @PostMapping("/solomovies")
+    public String hello(Model model, String year) {
+        service.getMoviesByYear(year);
         model.addAttribute("moviesFromBackend", service.getMovies());
         return "hello-world";
     }
@@ -43,15 +64,22 @@ public class HelloWorldController {
         return "details";
     }
 
+    @GetMapping("/new-movie")
+    public String getMovie() {
+        return "new-movie";
+    }
+
+
+
     @PostConstruct
-    private void setTableIds(){
+    private void setTableIds() {
         tablesIdForListing(service.getMovies());
     }
 
-    private List<BestFilm> tablesIdForListing(List<BestFilm> movies){
+    private List<BestFilm> tablesIdForListing(List<BestFilm> movies) {
         long tableNumeric = 1;
 
-        for(BestFilm m:movies){
+        for (BestFilm m : movies) {
             m.setListOnTableID(tableNumeric);
             tableNumeric += +1;
         }
