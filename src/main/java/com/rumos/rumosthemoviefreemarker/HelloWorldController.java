@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
@@ -29,32 +30,45 @@ public class HelloWorldController {
     @Autowired
     private MovieByIdFE movieByIdFE;
 
+    private String eu = "cenas";
+
 
     @RequestMapping("/test")
     public String testHello(){
         return "helloTest";
     }
 
-    @RequestMapping("/time")
+    @RequestMapping(value="/time", method = RequestMethod.POST)
     @ResponseBody
-    public String getHello(){
+    public String getHello(@RequestParam(required=false, name="name") String name){
         Date date = new Date();
-        return "hello "+ date;
+        System.out.println("----"+name+" "+ date+"----");
+        this.eu = name;
+        System.out.println("value " + this.eu + " was set to "+ name);
+        return this.eu;
+    }
+
+    @RequestMapping("/getMe")
+    @ResponseBody
+    public String getMe(){
+        System.out.println("eu "+eu);
+        return this.eu;
     }
 
     @GetMapping("/solomovies")
     public String helloWorld(Model model) {
-        model.addAttribute("key", "rumos");
-        model.addAttribute("moviesFromBackend", service.getMovies());
+        model.addAttribute("moviesFromBackend", tablesIdForListing(service.getMovies()));
         return "hello-world";
     }
 
-    @PostMapping("/solomovies")
-    public String hello(Model model, String year) {
-        service.getMoviesByYear(year);
-        model.addAttribute("moviesFromBackend", service.getMovies());
-        return "hello-world";
+    @RequestMapping(method=RequestMethod.GET, value="/getBestMovies")
+    @ResponseBody
+    public ModelAndView getBestMovies(Model model, @RequestParam(required=false, name="year") String year){
+        model.addAttribute("moviesFromBackend", tablesIdForListing(service.getMoviesByYear(year)));
+        System.out.println("year "+year);
+        return new ModelAndView("hello-world");
     }
+
 
     @GetMapping("/details/{id}")
     public String getId(Model model, @PathVariable long id) {

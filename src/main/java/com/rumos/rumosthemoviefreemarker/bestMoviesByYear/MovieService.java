@@ -36,7 +36,7 @@ public class MovieService {
         this.movies = buildResponse(backendResponse);
     }
 
-    public void getMoviesByYear(String year) {
+    public List<BestFilm> getMoviesByYear(String year) {
         String uri;
         if(year!=null)
             uri = "http://localhost:8080/best/year?year="+year;
@@ -45,7 +45,7 @@ public class MovieService {
 
         this.backendResponse = callRumosApi(uri);
 
-        this.movies = buildResponse(backendResponse);
+        return movies = buildResponse(backendResponse);
     }
 
     private String callRumosApi(final String uri) {

@@ -9,5 +9,4 @@ public class RumosTheMovieFreemarkerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RumosTheMovieFreemarkerApplication.class, args);
 	}
-
 }
