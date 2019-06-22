@@ -6,9 +6,9 @@ $(document).ready(function(){
             url:"getBestMovies",
             data : year,
             success: function(msg){
-
+                window.location.reload();
             }
         });
-        window.location.reload();
+
     });
 });
