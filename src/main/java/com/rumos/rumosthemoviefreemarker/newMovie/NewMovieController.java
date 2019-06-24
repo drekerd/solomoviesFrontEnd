@@ -1,5 +1,6 @@
 package com.rumos.rumosthemoviefreemarker.newMovie;
 
+import com.rumos.rumosthemoviefreemarker.newMovie.dao.MovieRepoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,17 +22,12 @@ public class NewMovieController {
     private List<NewMovie> movies;
     private NewMovie movie = new NewMovie();
 
+    @Autowired
+    private MovieRepoDao movieRepo;
+
     @RequestMapping("/add-movie")
     public ModelAndView addNewMovie(){
         return new ModelAndView("addNewMovie");
-    }
-
-    @PostMapping(value="/admin/add-new-movie")
-    public ResponseEntity<?> addNewMoviePost(@RequestBody NewMovie movie){
-
-        System.out.println(movie.toString());
-
-        return ResponseEntity.ok(movie);
     }
 
     @RequestMapping(value="/add-movie", method = RequestMethod.POST)
@@ -40,10 +36,15 @@ public class NewMovieController {
         this.movies.add(movie);
     }
 
+    @PostMapping(value="/admin/add-new-movie")
+    public ResponseEntity<?> addNewMoviePost(@RequestBody NewMovie movie){
+        System.out.println(movie.toString());
+        movieRepo.save(movie);
+        return ResponseEntity.ok(movie);
+    }
+
     @GetMapping("/getMovies")
     public List<NewMovie> helloWorld(Model model) {
         return this.movies;
     }
-
-
 }
