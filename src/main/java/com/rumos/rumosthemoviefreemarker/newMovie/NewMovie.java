@@ -2,10 +2,12 @@ package com.rumos.rumosthemoviefreemarker.newMovie;
 
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.stereotype.Service;
 
 @Data
 @ToString
-public class Movie {
+@Service
+public class NewMovie {
 
     private long id;
     private String name;

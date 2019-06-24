@@ -1,5 +1,6 @@
 package com.rumos.rumosthemoviefreemarker.newMovie;
 
+import lombok.Data;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,19 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+@Data
 @RestController
-public class ServiceResponse {
+public class NewServiceService {
 
-    private List<Movie> movies= new ArrayList<>();
+    private List<NewMovie> newMovies;
 
-    @PostMapping("/newMovies")
-    public void setHello(@RequestBody Movie movie){
-        this.movies.add(movie);
-    }
-
-    @GetMapping("/getMovies")
-    public List<Movie> helloWorld(Model model) {
-        return this.movies;
-    }
 }

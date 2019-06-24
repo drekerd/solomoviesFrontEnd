@@ -1,18 +1,49 @@
 package com.rumos.rumosthemoviefreemarker.newMovie;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+@Controller
 @RestController
 public class NewMovieController {
 
+    private static final Logger LOGGER = Logger.getLogger(NewMovieController.class.getName());
 
+    @Autowired
+    private List<NewMovie> movies;
+    private NewMovie movie = new NewMovie();
+
+    @RequestMapping("/add-movie")
+    public ModelAndView addNewMovie(){
+        return new ModelAndView("addNewMovie");
+    }
+
+    @PostMapping(value="/admin/add-new-movie")
+    public ResponseEntity<?> addNewMoviePost(@RequestBody NewMovie movie){
+
+        System.out.println(movie.toString());
+
+        return ResponseEntity.ok(movie);
+    }
+
+    @RequestMapping(value="/add-movie", method = RequestMethod.POST)
+    public void setHello(NewMovie movie) {
+        System.out.println(movie);
+        this.movies.add(movie);
+    }
+
+    @GetMapping("/getMovies")
+    public List<NewMovie> helloWorld(Model model) {
+        return this.movies;
+    }
 
 
 }
