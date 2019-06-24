@@ -28,18 +28,11 @@
         <a class="navbar-brand" href="#">SoloMovies</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="http://localhost:8081/home">Home</a></li>
         <li><a href="http://localhost:8081/solomovies" id="topRated">Top Rated By Year</a></li>
         <li><a href="#">Add New Movie</a></li>
         <li><a href="#">Search movie</a></li>
         <li class ="form-column">
-        <form action="#">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Year</label>
-                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Year" min="1" max="2019">
-                </div>
-                <button id="sub" type="submit" class="btn btn-primary">Submit</button>
-        </form>
         </li>
       </ul>
     </div>

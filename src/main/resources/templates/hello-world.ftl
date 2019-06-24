@@ -28,8 +28,8 @@
         <a class="navbar-brand" href="#">SoloMovies</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Top Rated By Year</a></li>
+        <li><a href="http://localhost:8081/home">Home</a></li>
+        <li class="active"><a href="localhost:8081/solomovies">Top Rated By Year</a></li>
         <li><a href="#">Add New Movie</a></li>
         <li><a href="#">Search movie</a></li>
         <li class ="form-column">
