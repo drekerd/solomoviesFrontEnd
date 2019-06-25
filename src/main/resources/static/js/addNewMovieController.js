@@ -4,6 +4,8 @@ $(document).ready(function(){
 
         var newMovie = {
             "name":$("#movieName").val(),
+            "date":$("#movieReleaseDate").val(),
+            "thumbnailFullLink":$("#movieImage").val(),
             "description": $("#movieDescription").val()
         };
 
