@@ -18,6 +18,7 @@ $(document).ready(function(){
             url:'/admin/add-new-movie',
             data: JSON.stringify(newMovie),
             success: function (result) {
+                window.location='admin/list-movies'
                 var json = JSON.stringify(result);
                 $('#feedback').html(json);
             }

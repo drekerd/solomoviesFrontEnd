@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -20,7 +18,6 @@ public class NewMovieController {
 
     @Autowired
     private List<NewMovie> movies;
-    private NewMovie movie = new NewMovie();
 
     @Autowired
     private MovieRepoDao movieRepo;
@@ -36,15 +33,25 @@ public class NewMovieController {
         this.movies.add(movie);
     }
 
-    @PostMapping(value="/admin/add-new-movie")
+    @RequestMapping(value="/admin/add-new-movie")
     public ResponseEntity<?> addNewMoviePost(@RequestBody NewMovie movie){
         System.out.println(movie.toString());
         movieRepo.save(movie);
         return ResponseEntity.ok(movie);
     }
 
-    @GetMapping("/getMovies")
-    public List<NewMovie> helloWorld(Model model) {
-        return this.movies;
+    @GetMapping("admin/list-movies")
+    public ModelAndView getMovies(Model model) {
+        this.movies = movieRepo.findAll();
+        System.out.println(movieRepo.findAll());
+        model.addAttribute("moviesFromDB",this.movies);
+        return new ModelAndView("admin");
+    }
+
+    @PutMapping(path="/admin/edit-movie", consumes = {"application/json"})
+    public ResponseEntity<?> updateMovie(@RequestBody NewMovie movie){
+        System.out.println(movie.toString());
+        movieRepo.save(movie);
+        return ResponseEntity.ok(movieRepo.findById(movie.getId()));
     }
 }
