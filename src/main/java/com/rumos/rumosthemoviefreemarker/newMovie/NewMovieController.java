@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -53,5 +55,15 @@ public class NewMovieController {
         System.out.println(movie.toString());
         movieRepo.save(movie);
         return ResponseEntity.ok(movieRepo.findById(movie.getId()));
+    }
+
+    @DeleteMapping(path="/admin/delete-movie/{id}")
+    public ResponseEntity<?> deleteMovie(@PathVariable("id") long id){
+        System.out.println(id);
+        movieRepo.deleteById(id);
+
+        return ResponseEntity.ok(id);
+
+
     }
 }

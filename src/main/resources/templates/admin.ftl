@@ -46,6 +46,7 @@
 </nav>
 <!--/.Navbar-->
 
+<div><a href="#" class="btn btn-success addbtn" id="addButton">Add New Movie</a></div>
 
 <table class="table table-striped">
     <thead class="thead-light">
@@ -65,14 +66,17 @@
             <td><a href="http://localhost:8081/details/${item.id?string.computer}" target="_blank">${item.name}</a></td>
             <td>${item.description}</td>
             <td>${item.date}</td>
-            <td><a href="#" class="btn btn-success editbtn" id="editButton">Edit</a></td>
+            <td>
+            <a href="#" class="btn btn-success editbtn" id="editButton">Edit</a>
+            <a href="#" class="btn btn-success deletebtn" id="deleteMovie">Delete</a>
+            </td>
         </tr>
     </#list>
     </tbody>
 </table>
 </body>
 
-<!--modal-->
+<!--editmodal-->
 <div class="modal fade" id="modalEditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -117,10 +121,63 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     <button type="submit" class="btn btn-default">Edit</button>
+
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!--/modal-->
+<!--/Editmodal-->
+
+<!--Addmodal-->
+<div class="modal fade" id="modalAddForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Movie</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="movieAddForm">
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label>Movie ID</label>
+                        <input type="text" id="mAddid" class="form-control validate">
+                    </div>
+
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="mAddName">Movie Name</label>
+                        <input type="text" id="mAddName" class="form-control validate">
+                    </div>
+
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="mAddDescription">Movie Description</label>
+                        <textarea type="text" id="mAddDescription" class="form-control validate"></textarea>
+                    </div>
+
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="mAddReleaseDate">Movie Release Date</label>
+                        <input type="text" id="mAddReleaseDate" class="form-control validate">
+                    </div>
+
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="mAddImage">Movie Image</label>
+                        <input type="text" id="mAddImage" class="form-control validate">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" class="btn btn-default">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--/Addmodal-->
 </html>
